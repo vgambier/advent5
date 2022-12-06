@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import collections
+
 def parse():
 
   crates = []
@@ -15,7 +17,7 @@ def parse():
   return crates[:-1], instructions[1:], int(instructions[0][-2])
 
 def improve_crates(crates, nb_crates):
-  data_crates = [[] for i in range(nb_crates)]
+  data_crates = [collections.deque([]) for i in range(nb_crates)]
   for crate_line in crates:
     for i in range(nb_crates):
       candidate = crate_line[i*4+1]
@@ -36,7 +38,7 @@ def apply_instructions(data_crates, cpu_instructions):
     origin = int(instruction[1])-1
     destination = int(instruction[2])-1
     for i in range(steps):
-      data_crates[destination].insert(0,data_crates[origin].pop(0))
+      data_crates[destination].appendleft(data_crates[origin].popleft())
   return data_crates
 
 if __name__ == '__main__':
