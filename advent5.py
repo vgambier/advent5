@@ -30,6 +30,15 @@ def improve_instructions(instructions):
     cpu_instructions.append([splitted[1], splitted[3], splitted[5]])
   return cpu_instructions
 
+def apply_instructions(data_crates, cpu_instructions):
+  for instruction in cpu_instructions:
+    steps = int(instruction[0])
+    origin = int(instruction[1])-1
+    destination = int(instruction[2])-1
+    for i in range(steps):
+      data_crates[destination].insert(0,data_crates[origin].pop(0))
+  return data_crates
+
 if __name__ == '__main__':
 
   crates, instructions, nb_crates = parse()
@@ -39,5 +48,12 @@ if __name__ == '__main__':
   
   # modify data structure for instructions
   cpu_instructions = improve_instructions(instructions)
-  print(cpu_instructions)
+  
+  # move crates around
+  apply_instructions(data_crates, cpu_instructions)
+    
+  # print top of crates
+  for row in data_crates:
+    print(row[0],end='')
+  print()
 
