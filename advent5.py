@@ -19,10 +19,16 @@ def improve_crates(crates, nb_crates):
   for crate_line in crates:
     for i in range(nb_crates):
       candidate = crate_line[i*4+1]
-      print(candidate)
       if candidate != ' ':
         data_crates[i].append(candidate)
   return data_crates
+
+def improve_instructions(instructions):
+  cpu_instructions = []
+  for instruction in instructions:
+    splitted = instruction.split()
+    cpu_instructions.append([splitted[1], splitted[3], splitted[5]])
+  return cpu_instructions
 
 if __name__ == '__main__':
 
@@ -30,5 +36,8 @@ if __name__ == '__main__':
   
   # modify data structure for crates
   data_crates = improve_crates(crates, nb_crates)
-  print(data_crates)
+  
+  # modify data structure for instructions
+  cpu_instructions = improve_instructions(instructions)
+  print(cpu_instructions)
 
