@@ -20,6 +20,8 @@ if __name__ == '__main__':
     score = 0
     for _round in rounds:
         score += scoring[_round[0]][_round[1]]
+
+    assert score == 11906
     print(f"Incorrect score is {score}")
 
     # Part 2
@@ -32,4 +34,7 @@ if __name__ == '__main__':
     true_score = 0
     for _round in rounds:
         true_score += true_scoring[_round[0]][_round[1]]
+
+    assert true_score == 11186
+
     print(f"Correct score is {true_score}")

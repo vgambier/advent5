@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import copy
 def parse():
     crates = []
     instructions = []
@@ -14,7 +15,7 @@ def parse():
     return crates[:-1], instructions[1:], int(instructions[0][-2])
 
 
-def improve_crates(crates, nb_crates):
+def modelize_crates(crates, nb_crates):
     data_crates = [[] for i in range(nb_crates)]
     for crate_line in crates:
         for i in range(nb_crates):
@@ -24,7 +25,7 @@ def improve_crates(crates, nb_crates):
     return data_crates
 
 
-def improve_instructions(instructions):
+def modelize_instructions(instructions):
     cpu_instructions = []
     for instruction in instructions:
         splitted = instruction.split()
@@ -55,18 +56,16 @@ def apply_instructions_9001(data_crates, cpu_instructions):
 if __name__ == '__main__':
 
     crates, instructions, nb_crates = parse()
+    data_crates = modelize_crates(crates, nb_crates)
+    data_crates_copy = copy.deepcopy(data_crates)
+    cpu_instructions = modelize_instructions(instructions)
 
-    # modify data structure for crates
-    data_crates = improve_crates(crates, nb_crates)
+    apply_instructions_9000(data_crates, cpu_instructions)
+    top_9000 = ''.join(row[0] if len(row) > 0 else '' for row in data_crates)
+    assert top_9000 == "ZRLJGSCTR"
+    print(f"Top of crates following 9000 procedure is {top_9000}")
 
-    # modify data structure for instructions
-    cpu_instructions = improve_instructions(instructions)
-
-    # move crates around
-    apply_instructions_9001(data_crates, cpu_instructions)
-
-    # print top of crates
-    for row in data_crates:
-        top = row[0] if len(row) > 0 else ''
-        print(top, end='')
-    print()
+    apply_instructions_9001(data_crates_copy, cpu_instructions)
+    top_9001 = ''.join(row[0] if len(row) > 0 else '' for row in data_crates_copy)
+    assert top_9001 == "PRTTGRFPB"
+    print(f"Top of crates following 9001 procedure is {top_9001}")

@@ -28,6 +28,8 @@ if __name__ == '__main__':
         item_priority = ord(item) - ord('a') + 1 if ord(item) >= ord('a') else ord(item) - ord('A') + 1 + 26
         sum_priorities += item_priority
 
+    assert sum_priorities == 8153
+
     print(f"Sum of priorities: {sum_priorities}")
 
     # Part 2
@@ -45,5 +47,7 @@ if __name__ == '__main__':
         badge_priority = ord(item) - ord('a') + 1 if ord(item) >= ord('a') else ord(item) - ord('A') + 1 + 26
         sum_badge_priorities += badge_priority
         i += 3
+
+    assert sum_badge_priorities == 2342
 
     print(f"Sum of badge priorities: {sum_badge_priorities}")

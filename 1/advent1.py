@@ -14,10 +14,15 @@ def parse_input():
 
 
 if __name__ == '__main__':
+
     # Part 1
     calories = parse_input()
-    print(f"Maximum colories is {max(calories)}")
+    max_calories = max(calories)
+    assert max_calories == 70698
+    print(f"Maximum colories is {max_calories}")
+
     # Part 2
     calories.sort(reverse=True)
     top3 = calories[0] + calories[1] + calories[2]
+    assert top3 == 206643
     print(f"Top 3 elves carry {top3}")

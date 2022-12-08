@@ -36,5 +36,8 @@ if __name__ == '__main__':
         if (a <= c <= b) or (a <= d <= b) or (c <= a <= d) or (c <= b <= d):
             nb_overlaps += 1
 
+    assert nb_full_overlaps == 500
+    assert nb_overlaps == 815
+
     print(f"Amount of assignment pairs where one range fully contain the other: {nb_full_overlaps}")
     print(f"Amount of assignment pairs with some overlap: {nb_overlaps}")
