@@ -62,10 +62,12 @@ if __name__ == '__main__':
 
     apply_instructions_9000(data_crates, cpu_instructions)
     top_9000 = ''.join(row[0] if len(row) > 0 else '' for row in data_crates)
-    assert top_9000 == "ZRLJGSCTR"
-    print(f"Top of crates following 9000 procedure is {top_9000}")
 
     apply_instructions_9001(data_crates_copy, cpu_instructions)
     top_9001 = ''.join(row[0] if len(row) > 0 else '' for row in data_crates_copy)
+
+    assert top_9000 == "ZRLJGSCTR"
     assert top_9001 == "PRTTGRFPB"
+
+    print(f"Top of crates following 9000 procedure is {top_9000}")
     print(f"Top of crates following 9001 procedure is {top_9001}")

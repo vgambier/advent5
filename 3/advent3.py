@@ -16,20 +16,17 @@ if __name__ == '__main__':
 
     sum_priorities = 0
     for rucksack in rucksacks:
-        rucksack_size = len(rucksack)
-        compartment_size = rucksack_size // 2
-        compartment1 = rucksack[:compartment_size]
-        compartment2 = rucksack[compartment_size:]
 
-        for item in compartment1:
-            if item in compartment2:
+        compartment_size = len(rucksack) // 2
+
+        for item in rucksack[:compartment_size]:  # first compartment
+            if item in rucksack[compartment_size:]:  # second compartment
                 break
 
         item_priority = ord(item) - ord('a') + 1 if ord(item) >= ord('a') else ord(item) - ord('A') + 1 + 26
         sum_priorities += item_priority
 
     assert sum_priorities == 8153
-
     print(f"Sum of priorities: {sum_priorities}")
 
     # Part 2
@@ -38,10 +35,10 @@ if __name__ == '__main__':
     i = 0
     while i < len(rucksacks):
 
-        current_group = rucksacks[i:i+3]
+        current_group = rucksacks[i:i + 3]
 
         for item in rucksacks[i]:
-            if item in rucksacks[i+1] and item in rucksacks[i+2]:
+            if item in rucksacks[i + 1] and item in rucksacks[i + 2]:
                 break
 
         badge_priority = ord(item) - ord('a') + 1 if ord(item) >= ord('a') else ord(item) - ord('A') + 1 + 26
@@ -49,5 +46,4 @@ if __name__ == '__main__':
         i += 3
 
     assert sum_badge_priorities == 2342
-
     print(f"Sum of badge priorities: {sum_badge_priorities}")
