@@ -1,16 +1,17 @@
 #!/usr/bin/env python
 
 def parse_input():
-    calories = [0]
+    parsed_calories = [0]
     i = 0
     with open('input.txt', 'r') as f:
         for line in f:
             if line != '\n':
-                calories[i] += int(line.strip('\n'))
+                parsed_calories[i] += int(line.strip('\n'))
             else:
                 i += 1
-                calories.append(0)
-    return calories
+                parsed_calories.append(0)
+    return parsed_calories
+
 
 if __name__ == '__main__':
     # Part 1
